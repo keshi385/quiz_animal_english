@@ -20,20 +20,26 @@ body {
   margin: 20px auto;
   cursor: pointer;
   display: block;
+  user-select: none;
 }
 
 .quiz_container {
-  width: 60vw;
-  height: 600px;
+  width: 80vw;
   margin: 0 auto;
   background-color: whitesmoke;
   border: 2px solid black;
   position: relative;
 }
 
+.quiz_container:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
 .quiz_image_container {
   width: 80%;
-  height: 400px;
+  padding-top: 56.25%;
   border: 0.1px dotted black;
   position: absolute;
   top: 40px;
@@ -41,12 +47,15 @@ body {
   transform: translateX(-50%);
   background-color: aliceblue;
   background-repeat: no-repeat;
+  background-size: contain;
   background-position: center center;
 }
 
 .quiz_word_container {
   position: absolute;
   text-align: center;
+  padding-bottom: 0px;
+  margin-bottom: 0;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);

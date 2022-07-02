@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {});
   let swithCount = 0;   // 切り替えカウンタ
   let timeoutId;
   let restSec = 0;
-  // let sound = new Audio();
 
   // Image枠の取得
   const image_container = document.querySelector('.quiz_image_container');
@@ -39,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {});
   });
 
   const switchImage = (() => {
-    console.log(Animals.length);
     if (swithCount > (Animals.length - 1)) {
       // 終了
       replay.textContent = "RETRY";
@@ -51,10 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {});
       hiddenWord();
       // Imageファイルの表示
       displayImage(swithCount);
+      // タイマの開始
+      restSec = TIME_3_SEC;
+      monitorTimer();
     }
-    // タイマの開始
-    restSec = TIME_3_SEC;
-    monitorTimer();
   });
 
   const displayImage = ((index) => {
@@ -82,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {});
     // 音声ファイルの取得
     soundFile = Animals[index].s_path;   
     // 音声の実行
-    sound.preload = "auto";
     sound.src = soundFile;
     sound.load();
     sound.play();
@@ -90,11 +87,9 @@ document.addEventListener('DOMContentLoaded', () => {});
 
   const monitorTimer = (() => {
     // タイマ起動
-    console.log(restSec);
     if (restSec-- > 0) {
       timeoutId = setTimeout(monitorTimer, TIME_1000_MSEC);
     } else {
-      console.log('5秒経過しました。');
       // タイマの停止
       clearTimeout(timeoutId);
       displayWord(swithCount);
